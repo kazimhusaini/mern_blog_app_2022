@@ -9,13 +9,13 @@ import Write from "./pages/write/Write";
 import {
   BrowserRouter,
   Routes,
-  Route,
+  Route,  
 } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 
 function App() {
-  const { IsUser } = useContext(Context);
+  const { user } = useContext(Context);
   return (
  
     <BrowserRouter>
@@ -26,15 +26,15 @@ function App() {
       <Route path="/posts" element={<Homepage />}>
 
       </Route>
-      <Route path="/register" element={IsUser ? <Homepage /> : <Register />}>
+      <Route path="/register" element={user ? <Homepage /> : <Register />}>
 
       </Route>
-      <Route path="/login" element={IsUser ? <Homepage /> : <Login />}></Route>
+      <Route path="/login" element={user ? <Homepage /> : <Login />}></Route>
       <Route path="/post/:id" element={<Single />}>
 
       </Route>
-      <Route path="/write" element={IsUser ? <Write /> : <Login />}></Route>
-      <Route path="/settings" element={IsUser ? <Settings /> : <Login />}>
+      <Route path="/write" element={user ? <Write /> : <Login />}></Route>
+      <Route path="/settings" element={user ? <Settings /> : <Login />}>
 
       </Route>
       </Routes>

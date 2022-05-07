@@ -4,11 +4,12 @@ import { Context } from "../../context/Context";
 import "./topbar.css";
 
 export default function TopBar() {
-  const { IsUser, dispatch } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
   const PF = "http://localhost:5000/images/"
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
+  
   };
   return (
     <div className="top">
@@ -41,14 +42,14 @@ export default function TopBar() {
             </Link>
           </li>
           <li className="topListItem" onClick={handleLogout}>
-            {IsUser && "LOGOUT"}
+            {user && "LOGOUT"}
           </li>
         </ul>
       </div>
       <div className="topRight">
-        {IsUser ? (
+        {user ? (
           <Link to="/settings">
-            <img className="topImg" src={IsUser.profilePic} alt="" />
+            <img className="topImg" src={PF+user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">
